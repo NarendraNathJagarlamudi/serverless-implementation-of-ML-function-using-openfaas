@@ -1,0 +1,14 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  subfeature-4:
+    lang: dockerfile
+    handler: ./subfeature_4
+    image: narendra116/subfeature_4:latest
+    environment:
+      read_timeout: "1000s"
+      write_timeout: "1000s"
+      upstream_timeout: "3000s"
+      exec_timeout: "1000s"

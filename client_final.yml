@@ -1,0 +1,22 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  client-final:
+    lang: dockerfile
+    handler: ./client_final
+    image: narendra116/client_final:latest
+    read_timeout: 1000s  # default is 5s, Maximum time to read HTTP request
+    write_timeout: 1000s  # default is 5s, Maximum time to write HTTP response
+    upstream_timeout: 3000s # Maximum duration of upstream function call
+    exec_timeout: 3000s
+    environment:
+      read_timeout: 1000s
+      upstream_timeout: 3000s
+      write_timeout: 1000s
+      exec_timeout: 3000s
+    annotations:
+      com.openfaas.health.http.path: "/healthz"
+      com.openfaas.health.http.initialDelay: "600s"
+      com.openfaas.health.http.periodSeconds: 600s

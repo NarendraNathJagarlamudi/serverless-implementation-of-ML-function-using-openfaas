@@ -1,0 +1,22 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  server-3:
+    lang: dockerfile
+    handler: ./server_3
+    image: narendra116/server_3:latest
+    read_timeout: "3000s"  # default is 5s, Maximum time to read HTTP request
+    write_timeout: "3000s"  # default is 5s, Maximum time to write HTTP response
+    upstream_timeout: "3000s" # Maximum duration of upstream function call
+    exec_timeout: "3000s"
+    requests:
+      memory: "2000Mi"
+    limits:
+      memory: "4000Mi"
+    environment:
+      read_timeout: "3000s"
+      upstream_timeout: "3000s"
+      write_timeout: "3000s"
+      exec_timeout: "3000s"
